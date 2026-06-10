@@ -1,20 +1,21 @@
 /* Moosefox Consulting — minimal static styles */
 
 :root {
-  --bg: #0c0e14;
-  --bg-soft: #12151e;
-  --surface: rgba(255, 255, 255, 0.04);
-  --surface-hover: rgba(255, 255, 255, 0.07);
-  --border: rgba(255, 255, 255, 0.08);
-  --text: #e8eaef;
-  --text-muted: #9aa3b2;
-  --blue: #5b9cff;
-  --blue-soft: rgba(91, 156, 255, 0.15);
-  --red: #ff6b6b;
-  --red-soft: rgba(255, 107, 107, 0.14);
-  --mix: linear-gradient(135deg, var(--blue) 0%, var(--red) 100%);
-  --radius: 18px;
-  --radius-sm: 12px;
+  --bg: #111318;
+  --bg-soft: #171a21;
+  --surface: #1a1e26;
+  --surface-hover: #21262f;
+  --surface-raised: #232833;
+  --border: #2a303c;
+  --border-soft: #22262e;
+  --text: #dddfe4;
+  --text-muted: #8b939f;
+  --blue: #6a9fd4;
+  --blue-soft: #1e2836;
+  --red: #c97a7a;
+  --red-soft: #2a2224;
+  --radius: 14px;
+  --radius-sm: 10px;
   --font: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: Georgia, "Times New Roman", serif;
   --max: 1120px;
@@ -40,6 +41,7 @@ body {
   color: var(--text);
   background: var(--bg);
   -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 img,
@@ -61,62 +63,6 @@ button {
   color: inherit;
 }
 
-/* Ambient background */
-
-.ambient {
-  position: fixed;
-  inset: 0;
-  overflow: hidden;
-  pointer-events: none;
-  z-index: 0;
-}
-
-.orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.45;
-  animation: drift 18s ease-in-out infinite alternate;
-}
-
-.orb-blue {
-  width: 42vw;
-  height: 42vw;
-  max-width: 520px;
-  max-height: 520px;
-  top: -8%;
-  left: -6%;
-  background: radial-gradient(circle, #3d7fd9 0%, transparent 70%);
-}
-
-.orb-red {
-  width: 36vw;
-  height: 36vw;
-  max-width: 440px;
-  max-height: 440px;
-  top: 28%;
-  right: -8%;
-  background: radial-gradient(circle, #d94a4a 0%, transparent 70%);
-  animation-delay: -6s;
-}
-
-.orb-mix {
-  width: 28vw;
-  height: 28vw;
-  max-width: 360px;
-  max-height: 360px;
-  bottom: 8%;
-  left: 32%;
-  background: radial-gradient(circle, #6b5cff 0%, transparent 70%);
-  opacity: 0.25;
-  animation-delay: -12s;
-}
-
-@keyframes drift {
-  from { transform: translate(0, 0) scale(1); }
-  to { transform: translate(3%, 4%) scale(1.08); }
-}
-
 /* Header */
 
 .site-header {
@@ -129,9 +75,8 @@ button {
   gap: 1rem;
   height: var(--header-h);
   padding: 0 clamp(1.25rem, 4vw, 2.5rem);
-  backdrop-filter: blur(16px);
-  background: rgba(12, 14, 20, 0.72);
-  border-bottom: 1px solid var(--border);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .logo {
@@ -167,9 +112,9 @@ button {
 
 .nav-cta {
   padding: 0.55rem 1rem;
-  border-radius: 999px;
+  border-radius: var(--radius-sm);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-soft);
   color: var(--text) !important;
 }
 
@@ -211,9 +156,8 @@ button {
   display: grid;
   gap: 0.25rem;
   padding: 1rem 1.25rem 1.5rem;
-  background: rgba(12, 14, 20, 0.96);
-  border-bottom: 1px solid var(--border);
-  backdrop-filter: blur(16px);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .mobile-nav[hidden] {
@@ -223,7 +167,7 @@ button {
 .mobile-nav a {
   padding: 0.85rem 0.5rem;
   color: var(--text);
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 /* Layout */
@@ -231,7 +175,6 @@ button {
 main,
 .site-footer {
   position: relative;
-  z-index: 1;
 }
 
 main {
@@ -282,8 +225,8 @@ main {
   font-size: 0.875rem;
   color: var(--text-muted);
   background: var(--surface);
-  border: 1px solid var(--border);
-  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
 }
 
 .pulse-dot {
@@ -291,13 +234,6 @@ main {
   height: 8px;
   border-radius: 50%;
   background: var(--red);
-  box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.5);
-  animation: pulse 2.4s ease infinite;
-}
-
-@keyframes pulse {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.45); }
-  70% { box-shadow: 0 0 0 10px rgba(255, 107, 107, 0); }
 }
 
 .hero h1 {
@@ -314,10 +250,7 @@ main {
 }
 
 .hero-accent {
-  background: var(--mix);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: var(--blue);
 }
 
 .hero-tagline {
@@ -347,30 +280,26 @@ main {
   padding: 0.85rem 1.35rem;
   font-size: 0.95rem;
   font-weight: 600;
-  border-radius: 999px;
-  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
-}
-
-.btn:hover,
-.btn:focus-visible {
-  transform: translateY(-1px);
+  border-radius: var(--radius-sm);
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
 }
 
 .btn-primary {
-  color: #fff;
-  background: linear-gradient(135deg, #4a8ef0 0%, #ff6b6b 100%);
-  box-shadow: 0 12px 32px rgba(91, 156, 255, 0.18), 0 4px 12px rgba(255, 107, 107, 0.12);
+  color: #eef2f6;
+  background: #3d5f82;
+  border: 1px solid #4a6d91;
 }
 
 .btn-primary:hover,
 .btn-primary:focus-visible {
-  box-shadow: 0 16px 40px rgba(91, 156, 255, 0.24), 0 6px 16px rgba(255, 107, 107, 0.16);
+  background: #466b90;
+  border-color: #557da3;
 }
 
 .btn-ghost {
   color: var(--text);
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-soft);
 }
 
 .btn-ghost:hover,
@@ -395,7 +324,7 @@ main {
 .hero-stats li {
   padding: 1.15rem 1.25rem;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-soft);
   border-radius: var(--radius-sm);
 }
 
@@ -421,20 +350,19 @@ main {
 .card {
   padding: 1.5rem;
   background: var(--surface);
-  border: 1px solid var(--border);
+  border: 1px solid var(--border-soft);
   border-radius: var(--radius);
-  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+  transition: background 0.2s ease, border-color 0.2s ease;
 }
 
 .card:hover {
   background: var(--surface-hover);
-  border-color: rgba(255, 255, 255, 0.12);
-  transform: translateY(-2px);
+  border-color: var(--border);
 }
 
 .card-featured {
-  background: linear-gradient(160deg, rgba(91, 156, 255, 0.1) 0%, rgba(255, 107, 107, 0.08) 100%);
-  border-color: rgba(91, 156, 255, 0.22);
+  background: var(--surface-raised);
+  border-color: #35465a;
 }
 
 .card-icon {
@@ -458,8 +386,8 @@ main {
 }
 
 .card-icon-mix {
-  background: linear-gradient(135deg, var(--blue-soft), var(--red-soft));
-  color: #fff;
+  background: #2a2a32;
+  color: var(--blue);
 }
 
 .card h3 {
@@ -493,7 +421,7 @@ main {
   grid-template-columns: auto 1fr;
   gap: 1.25rem;
   padding: 1.5rem 0;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 .step:first-child {
@@ -504,10 +432,7 @@ main {
   font-family: var(--font-display);
   font-size: 1.5rem;
   line-height: 1;
-  color: transparent;
-  background: var(--mix);
-  -webkit-background-clip: text;
-  background-clip: text;
+  color: var(--text-muted);
 }
 
 .step h3 {
@@ -526,9 +451,8 @@ main {
   top: calc(var(--header-h) + 1.5rem);
   padding: 1.75rem;
   border-radius: var(--radius);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.02) 100%);
-  border: 1px solid rgba(91, 156, 255, 0.18);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
 }
 
 .billing-label {
@@ -561,9 +485,9 @@ main {
   gap: 2rem;
   align-items: center;
   padding: clamp(2rem, 5vw, 3rem);
-  border-radius: calc(var(--radius) + 6px);
-  background: linear-gradient(145deg, rgba(91, 156, 255, 0.08) 0%, rgba(255, 107, 107, 0.06) 55%, rgba(255, 255, 255, 0.03) 100%);
-  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
 }
 
 .contact-lede {
@@ -596,7 +520,7 @@ main {
   width: min(100% - 2.5rem, var(--max));
   margin: 0 auto;
   padding: 2rem 0 3rem;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
   color: var(--text-muted);
   font-size: 0.875rem;
 }
@@ -641,15 +565,5 @@ main {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
-  }
-
-  .orb,
-  .pulse-dot {
-    animation: none;
-  }
-
-  .btn:hover,
-  .card:hover {
-    transform: none;
   }
 }
