@@ -310,7 +310,7 @@ main {
 }
 
 .hero-line {
-  display: block;
+  display: inline;
 }
 
 .hero-accent {
