@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Moosefox Consulting — Salesforce, HubSpot, and everything in between. Admin, integrations, reporting, and pay-as-you-go help.">
+  <title>Moosefox Consulting</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="ambient" aria-hidden="true">
+    <div class="orb orb-blue"></div>
+    <div class="orb orb-red"></div>
+    <div class="orb orb-mix"></div>
+  </div>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="Moosefox Consulting home">
+      <svg class="logo-mark" viewBox="0 0 40 40" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="1.5" opacity="0.35"/>
+        <path d="M12 26c2-6 6-10 8-10s6 4 8 10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="16" cy="17" r="1.5" fill="currentColor"/>
+        <circle cx="24" cy="17" r="1.5" fill="currentColor"/>
+        <path d="M20 8l1.5 3 3.5.5-2.5 2.5.5 3.5L20 15l-3 2.5.5-3.5-2.5-2.5 3.5-.5z" fill="currentColor" opacity="0.7"/>
+      </svg>
+      <span>Moosefox</span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#how">How it works</a>
+      <a href="#contact" class="nav-cta">Say hey</a>
+    </nav>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open menu">
+      <span></span>
+      <span></span>
+    </button>
+  </header>
+
+  <nav id="mobile-nav" class="mobile-nav" aria-label="Mobile" hidden>
+    <a href="#services">Services</a>
+    <a href="#how">How it works</a>
+    <a href="#contact">Say hey</a>
+  </nav>
+
+  <main id="top">
+    <section class="hero">
+      <p class="eyebrow">
+        <span class="pulse-dot" aria-hidden="true"></span>
+        Small team, big CRM energy
+      </p>
+      <h1>
+        <span class="hero-line">Moosefox</span>
+        <span class="hero-line hero-accent">Consulting</span>
+      </h1>
+      <p class="hero-tagline">Salesforce, HubSpot, and everything in between.</p>
+      <p class="hero-lede">
+        We keep your platforms talking, your reports honest, and your admins from quietly losing their minds.
+        No bloated retainers — just solid work when you need it.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="#contact">Start a conversation</a>
+        <a class="btn btn-ghost" href="#services">See what we do</a>
+      </div>
+      <ul class="hero-stats" aria-label="Highlights">
+        <li>
+          <strong>Salesforce + HubSpot</strong>
+          <span>Two ecosystems, one calm operator</span>
+        </li>
+        <li>
+          <strong>Pay as you go</strong>
+          <span>Use us when you need us</span>
+        </li>
+        <li>
+          <strong>No drama</strong>
+          <span>Clear updates, fast turnarounds</span>
+        </li>
+      </ul>
+    </section>
+
+    <section id="services" class="section services">
+      <div class="section-head">
+        <p class="section-label">Services</p>
+        <h2>Whatever your stack is doing — we can probably fix, connect, or explain it.</h2>
+      </div>
+      <div class="service-grid">
+        <article class="card">
+          <div class="card-icon card-icon-blue" aria-hidden="true">☁</div>
+          <h3>Salesforce admin</h3>
+          <p>Flows, fields, permissions, cleanup — the unglamorous stuff that keeps revenue teams running.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon card-icon-red" aria-hidden="true">◉</div>
+          <h3>HubSpot admin</h3>
+          <p>Portals, pipelines, lifecycle stages, and the occasional “why is this workflow mad at me?”</p>
+        </article>
+        <article class="card card-featured">
+          <div class="card-icon card-icon-mix" aria-hidden="true">⇄</div>
+          <h3>HubSpot ↔ Salesforce sync</h3>
+          <p>Bi-directional sync, field mapping, conflict rules — so marketing and sales stop playing telephone.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon card-icon-blue" aria-hidden="true">▤</div>
+          <h3>Reporting</h3>
+          <p>Dashboards people actually open. KPIs that mean something. Fewer mystery numbers in Slack.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon card-icon-red" aria-hidden="true">⎘</div>
+          <h3>Integrations</h3>
+          <p>Connect the tools you already pay for. Zapier, APIs, middleware — whatever gets the job done.</p>
+        </article>
+        <article class="card">
+          <div class="card-icon card-icon-mix" aria-hidden="true">⚡</div>
+          <h3>Ad-hoc assistance</h3>
+          <p>Stuck on something weird? One-off fixes, audits, second opinions, and “can you just…?” requests.</p>
+        </article>
+      </div>
+    </section>
+
+    <section id="how" class="section how">
+      <div class="section-head">
+        <p class="section-label">How it works</p>
+        <h2>Pay-as-you-go, because not every problem needs a six-month contract.</h2>
+      </div>
+      <ol class="steps">
+        <li class="step">
+          <span class="step-num">01</span>
+          <div>
+            <h3>Tell us what’s broken (or boring)</h3>
+            <p>Send a note with context, screenshots, or a Loom rant. We’ve seen worse.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">02</span>
+          <div>
+            <h3>We scope it fast</h3>
+            <p>Quick estimate, clear timeline, no surprise scope creep speeches.</p>
+          </div>
+        </li>
+        <li class="step">
+          <span class="step-num">03</span>
+          <div>
+            <h3>We ship, you breathe</h3>
+            <p>Work gets done. You pay for what you use. Come back whenever the CRM gets spicy again.</p>
+          </div>
+        </li>
+      </ol>
+      <aside class="billing-card">
+        <p class="billing-label">Billing structure</p>
+        <h3>Pay-as-you-go</h3>
+        <p>No monthly minimums. No “strategic partnership” handcuffs. Just straightforward help, billed for the work you actually need.</p>
+      </aside>
+    </section>
+
+    <section id="contact" class="section contact">
+      <div class="contact-inner">
+        <div class="contact-copy">
+          <p class="section-label">Contact</p>
+          <h2>Ready when you are.</h2>
+          <p class="contact-lede">
+            Drop a line about your Salesforce, HubSpot, or “something in between” situation.
+            We’ll get back to you faster than your last integration sync.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a class="btn btn-primary btn-large" href="mailto:hello@moosefox.com">hello@moosefox.com</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Moosefox Consulting</p>
+    <p class="footer-tag">Built for teams who’d rather ship than sit in another platform demo.</p>
+  </footer>
+
+  <script src="js/main.js" defer></script>
+</body>
+</html>
