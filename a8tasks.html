@@ -386,6 +386,35 @@ const schedule = {
   }
 };
 
+const dailyMiddayTasks = [
+  { type: 'admin', icon: '⏱️', title: 'Track time — midday check', note: 'Log billable and non-billable hours so far today in RL. Don\'t let time pile up unlogged.' },
+  { type: 'admin', icon: '📬', title: 'Email check — midday', note: 'Triage shared Front inboxes and client threads. Handle anything urgent before the afternoon.' },
+];
+
+const dailyEodTasks = [
+  { type: 'admin', icon: '⏱️', title: 'Track time — EOD check', note: 'Log remaining time for the day. Confirm today\'s hours are captured before you sign off.' },
+  { type: 'admin', icon: '📬', title: 'Email check — EOD', note: 'Final pass on inboxes. Nothing urgent left hanging overnight.' },
+];
+
+for (let dow = 1; dow <= 5; dow++) {
+  const sections = schedule[dow].sections;
+  const eodIdx = sections.findIndex(s => /^(EOD|EOD Check|Admin)/i.test(s.heading));
+
+  sections.splice(eodIdx >= 0 ? eodIdx : sections.length, 0, {
+    heading: 'Midday',
+    tasks: dailyMiddayTasks.map(t => ({ ...t })),
+  });
+
+  if (eodIdx >= 0) {
+    sections[eodIdx + 1].tasks.push(...dailyEodTasks.map(t => ({ ...t })));
+  } else {
+    sections.push({
+      heading: 'End of Day',
+      tasks: dailyEodTasks.map(t => ({ ...t })),
+    });
+  }
+}
+
 // Weekends get a rest message
 const weekend = {
   0: { label: 'Sunday', emoji: '😴', summary: 'No admin tasks today. Enjoy your weekend!' },
