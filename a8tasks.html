@@ -11,7 +11,9 @@
 
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    background: #f4f5f7;
+    background: #0d0f14;
+    color: #e5e7eb;
+    color-scheme: dark;
     min-height: 100vh;
     display: flex;
     align-items: flex-start;
@@ -31,13 +33,13 @@
   .header h1 {
     font-size: 22px;
     font-weight: 700;
-    color: #1a1a2e;
+    color: #f3f4f6;
     margin-bottom: 4px;
   }
 
   .header .date {
     font-size: 14px;
-    color: #6b7280;
+    color: #9ca3af;
   }
 
   /* Day tabs */
@@ -55,14 +57,14 @@
     font-weight: 600;
     cursor: pointer;
     border: 2px solid transparent;
-    background: #fff;
-    color: #6b7280;
+    background: #1a1d28;
+    color: #9ca3af;
     transition: all 0.15s ease;
   }
 
   .day-tab:hover {
-    border-color: #6366f1;
-    color: #6366f1;
+    border-color: #818cf8;
+    color: #a5b4fc;
   }
 
   .day-tab.active {
@@ -73,7 +75,7 @@
 
   .day-tab.today {
     border-color: #6366f1;
-    color: #6366f1;
+    color: #a5b4fc;
   }
 
   .day-tab.today.active {
@@ -83,7 +85,7 @@
 
   /* Today banner */
   .today-banner {
-    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
     border-radius: 12px;
     padding: 16px 20px;
     margin-bottom: 20px;
@@ -91,6 +93,7 @@
     display: flex;
     align-items: center;
     gap: 12px;
+    box-shadow: 0 4px 20px rgba(99, 102, 241, 0.25);
   }
 
   .today-banner .icon { font-size: 24px; }
@@ -112,7 +115,7 @@
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    color: #9ca3af;
+    color: #6b7280;
     margin-bottom: 8px;
     margin-top: 20px;
   }
@@ -120,7 +123,7 @@
   .section-label:first-of-type { margin-top: 0; }
 
   .task-card {
-    background: #fff;
+    background: #1a1d28;
     border-radius: 10px;
     padding: 14px 16px;
     margin-bottom: 8px;
@@ -128,18 +131,24 @@
     align-items: flex-start;
     gap: 12px;
     border-left: 4px solid transparent;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
-    transition: box-shadow 0.15s;
+    border: 1px solid #252836;
+    border-left-width: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.15s, border-color 0.15s;
   }
 
-  .task-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  .task-card:hover {
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.4);
+    border-color: #2f3344;
+    border-left-width: 4px;
+  }
 
   .task-card.prep    { border-left-color: #f59e0b; }
-  .task-card.sprint  { border-left-color: #6366f1; }
-  .task-card.post    { border-left-color: #10b981; }
-  .task-card.confirm { border-left-color: #3b82f6; }
-  .task-card.admin   { border-left-color: #ec4899; }
-  .task-card.onboard { border-left-color: #8b5cf6; }
+  .task-card.sprint  { border-left-color: #818cf8; }
+  .task-card.post    { border-left-color: #34d399; }
+  .task-card.confirm { border-left-color: #60a5fa; }
+  .task-card.admin   { border-left-color: #f472b6; }
+  .task-card.onboard { border-left-color: #a78bfa; }
 
   .task-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
 
@@ -148,13 +157,13 @@
   .task-title {
     font-size: 14px;
     font-weight: 600;
-    color: #111827;
+    color: #f3f4f6;
     margin-bottom: 3px;
   }
 
   .task-note {
     font-size: 12px;
-    color: #6b7280;
+    color: #9ca3af;
     line-height: 1.5;
   }
 
@@ -170,46 +179,48 @@
     margin-top: 2px;
   }
 
-  .badge.prep    { background: #fef3c7; color: #92400e; }
-  .badge.sprint  { background: #ede9fe; color: #4c1d95; }
-  .badge.post    { background: #d1fae5; color: #065f46; }
-  .badge.confirm { background: #dbeafe; color: #1e40af; }
-  .badge.admin   { background: #fce7f3; color: #9d174d; }
-  .badge.onboard { background: #ede9fe; color: #5b21b6; }
+  .badge.prep    { background: rgba(245, 158, 11, 0.18); color: #fbbf24; }
+  .badge.sprint  { background: rgba(129, 140, 248, 0.18); color: #a5b4fc; }
+  .badge.post    { background: rgba(52, 211, 153, 0.18); color: #6ee7b7; }
+  .badge.confirm { background: rgba(96, 165, 250, 0.18); color: #93c5fd; }
+  .badge.admin   { background: rgba(244, 114, 182, 0.18); color: #f9a8d4; }
+  .badge.onboard { background: rgba(167, 139, 250, 0.18); color: #c4b5fd; }
 
   .no-tasks {
-    background: #fff;
+    background: #1a1d28;
+    border: 1px solid #252836;
     border-radius: 10px;
     padding: 32px;
     text-align: center;
-    color: #9ca3af;
+    color: #6b7280;
     font-size: 14px;
   }
 
   .no-tasks .emoji { font-size: 32px; display: block; margin-bottom: 8px; }
 
   .progress {
-    background: #fff;
+    background: #1a1d28;
+    border: 1px solid #252836;
     border-radius: 10px;
     padding: 14px 16px;
     margin-top: 20px;
     display: flex;
     align-items: center;
     gap: 12px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
   }
 
-  .progress-label { font-size: 13px; color: #6b7280; white-space: nowrap; }
-  .progress-bar-wrap { flex: 1; background: #e5e7eb; border-radius: 999px; height: 8px; }
+  .progress-label { font-size: 13px; color: #9ca3af; white-space: nowrap; }
+  .progress-bar-wrap { flex: 1; background: #2d3142; border-radius: 999px; height: 8px; }
   .progress-bar { height: 8px; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s; }
-  .progress-count { font-size: 13px; font-weight: 600; color: #374151; white-space: nowrap; }
+  .progress-count { font-size: 13px; font-weight: 600; color: #d1d5db; white-space: nowrap; }
 
   .checkbox-wrap { display: flex; align-items: flex-start; gap: 10px; }
   .checkbox-wrap input[type="checkbox"] {
-    width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; margin-top: 2px; accent-color: #6366f1;
+    width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; margin-top: 2px; accent-color: #818cf8;
   }
-  .task-card.done { opacity: 0.5; }
-  .task-card.done .task-title { text-decoration: line-through; }
+  .task-card.done { opacity: 0.45; }
+  .task-card.done .task-title { text-decoration: line-through; color: #6b7280; }
 </style>
 </head>
 <body>
