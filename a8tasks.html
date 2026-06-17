@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow, noarchive, nosnippet, noimageindex">
+<meta name="googlebot" content="noindex, nofollow">
+<title>Weekly Admin Reminders</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: #f4f5f7;
+    min-height: 100vh;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 32px 16px;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .header h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-bottom: 4px;
+  }
+
+  .header .date {
+    font-size: 14px;
+    color: #6b7280;
+  }
+
+  /* Day tabs */
+  .day-tabs {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .day-tab {
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    border: 2px solid transparent;
+    background: #fff;
+    color: #6b7280;
+    transition: all 0.15s ease;
+  }
+
+  .day-tab:hover {
+    border-color: #6366f1;
+    color: #6366f1;
+  }
+
+  .day-tab.active {
+    background: #6366f1;
+    color: #fff;
+    border-color: #6366f1;
+  }
+
+  .day-tab.today {
+    border-color: #6366f1;
+    color: #6366f1;
+  }
+
+  .day-tab.today.active {
+    background: #6366f1;
+    color: #fff;
+  }
+
+  /* Today banner */
+  .today-banner {
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+    color: white;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .today-banner .icon { font-size: 24px; }
+
+  .today-banner .text h2 {
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+
+  .today-banner .text p {
+    font-size: 13px;
+    opacity: 0.85;
+  }
+
+  /* Task cards */
+  .section-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #9ca3af;
+    margin-bottom: 8px;
+    margin-top: 20px;
+  }
+
+  .section-label:first-of-type { margin-top: 0; }
+
+  .task-card {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    border-left: 4px solid transparent;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    transition: box-shadow 0.15s;
+  }
+
+  .task-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+
+  .task-card.prep    { border-left-color: #f59e0b; }
+  .task-card.sprint  { border-left-color: #6366f1; }
+  .task-card.post    { border-left-color: #10b981; }
+  .task-card.confirm { border-left-color: #3b82f6; }
+  .task-card.admin   { border-left-color: #ec4899; }
+  .task-card.onboard { border-left-color: #8b5cf6; }
+
+  .task-icon { font-size: 18px; flex-shrink: 0; margin-top: 1px; }
+
+  .task-body { flex: 1; }
+
+  .task-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 3px;
+  }
+
+  .task-note {
+    font-size: 12px;
+    color: #6b7280;
+    line-height: 1.5;
+  }
+
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 2px 7px;
+    border-radius: 999px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .badge.prep    { background: #fef3c7; color: #92400e; }
+  .badge.sprint  { background: #ede9fe; color: #4c1d95; }
+  .badge.post    { background: #d1fae5; color: #065f46; }
+  .badge.confirm { background: #dbeafe; color: #1e40af; }
+  .badge.admin   { background: #fce7f3; color: #9d174d; }
+  .badge.onboard { background: #ede9fe; color: #5b21b6; }
+
+  .no-tasks {
+    background: #fff;
+    border-radius: 10px;
+    padding: 32px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 14px;
+  }
+
+  .no-tasks .emoji { font-size: 32px; display: block; margin-bottom: 8px; }
+
+  .progress {
+    background: #fff;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  }
+
+  .progress-label { font-size: 13px; color: #6b7280; white-space: nowrap; }
+  .progress-bar-wrap { flex: 1; background: #e5e7eb; border-radius: 999px; height: 8px; }
+  .progress-bar { height: 8px; border-radius: 999px; background: linear-gradient(90deg, #6366f1, #8b5cf6); transition: width 0.3s; }
+  .progress-count { font-size: 13px; font-weight: 600; color: #374151; white-space: nowrap; }
+
+  .checkbox-wrap { display: flex; align-items: flex-start; gap: 10px; }
+  .checkbox-wrap input[type="checkbox"] {
+    width: 16px; height: 16px; cursor: pointer; flex-shrink: 0; margin-top: 2px; accent-color: #6366f1;
+  }
+  .task-card.done { opacity: 0.5; }
+  .task-card.done .task-title { text-decoration: line-through; }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <h1>📋 Weekly Admin Reminders</h1>
+    <div class="date" id="dateDisplay"></div>
+  </div>
+
+  <div class="day-tabs" id="dayTabs"></div>
+
+  <div id="todayBanner"></div>
+  <div id="taskList"></div>
+  <div class="progress" id="progressBar" style="display:none;">
+    <span class="progress-label">Today's progress</span>
+    <div class="progress-bar-wrap"><div class="progress-bar" id="pBar" style="width:0%"></div></div>
+    <span class="progress-count" id="pCount">0 / 0</span>
+  </div>
+</div>
+
+<script>
+const DAYS = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+
+const schedule = {
+  1: { // Monday
+    label: 'Monday',
+    emoji: '🟡',
+    summary: 'Agenda day — get Traffix & ForceBrands prepped before EOD.',
+    sections: [
+      {
+        heading: 'Prep',
+        tasks: [
+          { type: 'prep', icon: '📝', title: 'Traffix — send agenda email', note: 'Update RL space, create meeting notes page in Spaces, draft & send from shared Front inbox. Must be out before EOD (24 hrs before Tuesday sprint).' },
+          { type: 'prep', icon: '📝', title: 'ForceBrands — send agenda email', note: 'Same process. Must be out before EOD.' },
+        ]
+      },
+      {
+        heading: 'Ongoing',
+        tasks: [
+          { type: 'admin', icon: '🔍', title: 'HubSpot product updates review', note: 'Scan betas & releases. Document anything relevant for Traffix, ForceBrands, HealthChannels, Lineal, or Omron.' },
+          { type: 'admin', icon: '🗂️', title: 'RL / task hygiene', note: 'Close lingering tasks, update statuses, review budgets heading into the sprint week.' },
+        ]
+      }
+    ]
+  },
+  2: { // Tuesday
+    label: 'Tuesday',
+    emoji: '🟣',
+    summary: 'Traffix sprint day + Carson & PBE onboarding. Send agendas for Thursday\'s three sprints.',
+    sections: [
+      {
+        heading: 'Pre-Sprint',
+        tasks: [
+          { type: 'prep', icon: '✅', title: 'Final Traffix prep', note: 'Confirm agenda was sent. Check RL sprint dashboard is current before the call.' },
+        ]
+      },
+      {
+        heading: 'Sprints',
+        tasks: [
+          { type: 'sprint', icon: '📞', title: 'Traffix sprint call', note: 'You lead. Screen share RL sprint dashboard, run BRAIN, capture action items.' },
+          { type: 'onboard', icon: '👀', title: 'Carson onboarding meeting', note: 'Attend & observe. No notes or recap responsibility yet.' },
+          { type: 'onboard', icon: '👀', title: 'PBE onboarding meeting', note: 'Attend & observe. No notes or recap responsibility yet.' },
+        ]
+      },
+      {
+        heading: 'Post-Sprint',
+        tasks: [
+          { type: 'post', icon: '🗂️', title: 'Traffix — update RL tasks', note: 'Close completed tasks, update in-progress, add new items. Confirm all subtasks have assignees, dates, and time estimates.' },
+          { type: 'post', icon: '📧', title: 'Traffix — send recap email', note: 'Draft in Front from shared inbox. Include action items, budget update, Avoma link, RL portal link. Send within 24 hrs of sprint.' },
+        ]
+      },
+      {
+        heading: 'EOD',
+        tasks: [
+          { type: 'prep', icon: '📝', title: 'Send Thursday agendas', note: 'Draft & send agendas for HealthChannels, Lineal, and Omron. All three must be out before EOD Wednesday.' },
+        ]
+      }
+    ]
+  },
+  3: { // Wednesday
+    label: 'Wednesday',
+    emoji: '🟢',
+    summary: 'Confirm Traffix recap, run ForceBrands sprint, confirm Thursday agendas are out.',
+    sections: [
+      {
+        heading: 'Morning Check',
+        tasks: [
+          { type: 'confirm', icon: '✅', title: 'Confirm Traffix recap was sent', note: 'Verify it went out from the shared client inbox to all relevant POCs.' },
+        ]
+      },
+      {
+        heading: 'Sprint',
+        tasks: [
+          { type: 'sprint', icon: '📞', title: 'ForceBrands sprint call', note: 'You lead. Run BRAIN, screen share sprint dashboard, capture action items.' },
+        ]
+      },
+      {
+        heading: 'Post-Sprint',
+        tasks: [
+          { type: 'post', icon: '🗂️', title: 'ForceBrands — update RL tasks', note: 'Close completed, update open, add new work. Ensure all subtasks have assignees, dates, and estimates.' },
+          { type: 'post', icon: '📧', title: 'ForceBrands — send recap email', note: 'Draft in Front from shared inbox. Action items, budget update, Avoma link, RL portal link.' },
+        ]
+      },
+      {
+        heading: 'EOD Check',
+        tasks: [
+          { type: 'confirm', icon: '✅', title: 'Confirm Thursday agendas sent', note: 'HealthChannels, Lineal, and Omron agendas must all be out the door today.' },
+        ]
+      }
+    ]
+  },
+  4: { // Thursday
+    label: 'Thursday',
+    emoji: '🔴',
+    summary: 'Heaviest day — confirm ForceBrands recap, then three back-to-back sprints.',
+    sections: [
+      {
+        heading: 'Morning Check',
+        tasks: [
+          { type: 'confirm', icon: '✅', title: 'Confirm ForceBrands recap was sent', note: 'Verify it went out from the shared client inbox.' },
+        ]
+      },
+      {
+        heading: 'Sprints',
+        tasks: [
+          { type: 'sprint', icon: '📞', title: 'HealthChannels sprint call', note: 'You lead. Run BRAIN.' },
+          { type: 'sprint', icon: '📞', title: 'Lineal sprint call', note: 'You lead. Run BRAIN.' },
+          { type: 'sprint', icon: '📞', title: 'Omron sprint call', note: 'You lead. Run BRAIN.' },
+        ]
+      },
+      {
+        heading: 'Post-Sprint',
+        tasks: [
+          { type: 'post', icon: '🗂️', title: 'HealthChannels / Lineal / Omron — update RL tasks', note: 'Work through all three. Close completed, update open, add new items. Confirm assignees, dates, estimates.' },
+          { type: 'post', icon: '📧', title: 'HealthChannels — send recap email', note: 'Draft and send from shared Front inbox.' },
+          { type: 'post', icon: '📧', title: 'Lineal — send recap email', note: 'Draft and send from shared Front inbox.' },
+          { type: 'post', icon: '📧', title: 'Omron — send recap email', note: 'Draft and send from shared Front inbox.' },
+        ]
+      }
+    ]
+  },
+  5: { // Friday
+    label: 'Friday',
+    emoji: '🔵',
+    summary: 'Confirm all three Thursday recaps sent, submit timesheet, budget review.',
+    sections: [
+      {
+        heading: 'Morning Checks',
+        tasks: [
+          { type: 'confirm', icon: '✅', title: 'Confirm HealthChannels recap was sent', note: 'Verify from shared client inbox.' },
+          { type: 'confirm', icon: '✅', title: 'Confirm Lineal recap was sent', note: 'Verify from shared client inbox.' },
+          { type: 'confirm', icon: '✅', title: 'Confirm Omron recap was sent', note: 'Verify from shared client inbox.' },
+        ]
+      },
+      {
+        heading: 'Admin',
+        tasks: [
+          { type: 'admin', icon: '⏱️', title: 'Submit timesheet', note: '40 hrs logged (billable + non-billable). Must be submitted by EOD Friday to count toward monthly utilization bonus.' },
+          { type: 'admin', icon: '💰', title: 'Budget & backlog review', note: 'Review hour burn across all five accounts. Flag over/under-pacing. Note any upsell or change order needs to raise with your DL.' },
+        ]
+      }
+    ]
+  }
+};
+
+// Weekends get a rest message
+const weekend = {
+  0: { label: 'Sunday', emoji: '😴', summary: 'No admin tasks today. Enjoy your weekend!' },
+  6: { label: 'Saturday', emoji: '😴', summary: 'No admin tasks today. Enjoy your weekend!' },
+};
+
+let selectedDay = null;
+let checkState = {};
+
+function getTodayDow() {
+  return new Date().getDay();
+}
+
+function formatDate(d) {
+  return d.toLocaleDateString('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+function buildTabs() {
+  const tabs = document.getElementById('dayTabs');
+  const todayDow = getTodayDow();
+  [1,2,3,4,5].forEach(dow => {
+    const t = document.createElement('button');
+    t.className = 'day-tab' + (dow === todayDow ? ' today' : '') + (dow === selectedDay ? ' active' : '');
+    t.textContent = schedule[dow].label;
+    t.onclick = () => { selectedDay = dow; render(); };
+    tabs.appendChild(t);
+  });
+}
+
+function render() {
+  const todayDow = getTodayDow();
+
+  // Update date
+  document.getElementById('dateDisplay').textContent = formatDate(new Date());
+
+  // Rebuild tabs
+  const tabs = document.getElementById('dayTabs');
+  tabs.innerHTML = '';
+  [1,2,3,4,5].forEach(dow => {
+    const t = document.createElement('button');
+    t.className = 'day-tab' + (dow === todayDow ? ' today' : '') + (dow === selectedDay ? ' active' : '');
+    t.textContent = schedule[dow].label;
+    t.onclick = () => { selectedDay = dow; render(); };
+    tabs.appendChild(t);
+  });
+
+  const banner = document.getElementById('todayBanner');
+  const list = document.getElementById('taskList');
+  const prog = document.getElementById('progressBar');
+  list.innerHTML = '';
+  banner.innerHTML = '';
+  prog.style.display = 'none';
+
+  const dayData = schedule[selectedDay] || weekend[selectedDay];
+
+  if (!dayData) return;
+
+  // Banner
+  const isToday = selectedDay === todayDow;
+  banner.innerHTML = `
+    <div class="today-banner">
+      <span class="icon">${dayData.emoji}</span>
+      <div class="text">
+        <h2>${isToday ? "Today — " : ""}${dayData.label}</h2>
+        <p>${dayData.summary}</p>
+      </div>
+    </div>`;
+
+  // No tasks (weekend)
+  if (!dayData.sections) {
+    list.innerHTML = `<div class="no-tasks"><span class="emoji">🏖️</span>No tasks scheduled.</div>`;
+    return;
+  }
+
+  // Collect all tasks for progress
+  const allTasks = dayData.sections.flatMap(s => s.tasks);
+  const key = `day_${selectedDay}`;
+  if (!checkState[key]) checkState[key] = {};
+  let doneCount = Object.values(checkState[key]).filter(Boolean).length;
+
+  // Render sections
+  dayData.sections.forEach(section => {
+    const label = document.createElement('div');
+    label.className = 'section-label';
+    label.textContent = section.heading;
+    list.appendChild(label);
+
+    section.tasks.forEach((task, i) => {
+      const taskKey = `${section.heading}_${i}`;
+      const isDone = checkState[key][taskKey] || false;
+
+      const card = document.createElement('div');
+      card.className = `task-card ${task.type}${isDone ? ' done' : ''}`;
+
+      card.innerHTML = `
+        <div class="checkbox-wrap">
+          <input type="checkbox" ${isDone ? 'checked' : ''} data-key="${taskKey}" data-day="${selectedDay}">
+        </div>
+        <span class="task-icon">${task.icon}</span>
+        <div class="task-body">
+          <div class="task-title">${task.title}</div>
+          <div class="task-note">${task.note}</div>
+        </div>
+        <span class="badge ${task.type}">${task.type === 'onboard' ? 'Observe' : task.type === 'confirm' ? 'Verify' : task.type.charAt(0).toUpperCase() + task.type.slice(1)}</span>
+      `;
+
+      card.querySelector('input[type="checkbox"]').addEventListener('change', function() {
+        checkState[`day_${this.dataset.day}`][this.dataset.key] = this.checked;
+        render();
+      });
+
+      list.appendChild(card);
+    });
+  });
+
+  // Progress bar
+  doneCount = Object.values(checkState[key]).filter(Boolean).length;
+  const total = allTasks.length;
+  prog.style.display = 'flex';
+  document.getElementById('pBar').style.width = total > 0 ? `${Math.round((doneCount/total)*100)}%` : '0%';
+  document.getElementById('pCount').textContent = `${doneCount} / ${total} done`;
+}
+
+// Init
+const todayDow = getTodayDow();
+selectedDay = (todayDow >= 1 && todayDow <= 5) ? todayDow : 1;
+buildTabs();
+render();
+</script>
+</body>
+</html>
