@@ -254,13 +254,19 @@ const schedule = {
         heading: 'Prep',
         tasks: [
           { type: 'prep', icon: '📝', title: 'Traffix — send agenda email', note: 'Update RL space, create meeting notes page in Spaces, draft & send from shared Front inbox. Must be out before EOD (24 hrs before Tuesday sprint).' },
-          { type: 'prep', icon: '📝', title: 'ForceBrands — send agenda email', note: 'Same process. Must be out before EOD.' },
+          { type: 'prep', icon: '📝', title: 'ForceBrands — send agenda email', note: 'Same process. Must be out before 11am Tuesday.' },
+        ]
+      },
+      {
+        heading: 'Midsprint',
+        tasks: [
+          { type: 'sprint', icon: '📧', title: 'Send Kami midsprint email', note: 'Check with Kim to align on midsprint email content.' },
         ]
       },
       {
         heading: 'Ongoing',
         tasks: [
-          { type: 'admin', icon: '🔍', title: 'HubSpot product updates review', note: 'Scan betas & releases. Document anything relevant for Traffix, ForceBrands, HealthChannels, Lineal, or Omron.' },
+          { type: 'admin', icon: '🔍', title: 'HubSpot product updates review', note: 'Scan betas & releases. Document anything relevant for Traffix, ForceBrands, Kami, Lineal, Carson, PBE.' },
           { type: 'admin', icon: '🗂️', title: 'RL / task hygiene', note: 'Close lingering tasks, update statuses, review budgets heading into the sprint week.' },
         ]
       }
@@ -269,8 +275,14 @@ const schedule = {
   2: { // Tuesday
     label: 'Tuesday',
     emoji: '🟣',
-    summary: 'Traffix sprint day + Carson & PBE onboarding. Send agendas for Thursday\'s three sprints.',
+    summary: 'Traffix sprint day + Carson & PBE onboarding. Send agendas for Thursday\'s sprints.',
     sections: [
+      {
+        heading: 'Morning Check',
+        tasks: [
+          { type: 'confirm', icon: '✅', title: 'Confirm Forcebrands agenda was sent', note: 'Verify it went out from the shared client inbox to all relevant POCs.' },
+        ]
+      },
       {
         heading: 'Pre-Sprint',
         tasks: [
@@ -280,22 +292,22 @@ const schedule = {
       {
         heading: 'Sprints',
         tasks: [
-          { type: 'sprint', icon: '📞', title: 'Traffix sprint call', note: 'You lead. Screen share RL sprint dashboard, run BRAIN, capture action items.' },
-          { type: 'onboard', icon: '👀', title: 'Carson onboarding meeting', note: 'Attend & observe. No notes or recap responsibility yet.' },
-          { type: 'onboard', icon: '👀', title: 'PBE onboarding meeting', note: 'Attend & observe. No notes or recap responsibility yet.' },
+        { type: 'onboard', icon: '👀', title: 'Carson meeting', note: 'Attend & observe. No notes or recap responsibility yet.' },
+        { type: 'onboard', icon: '👀', title: 'PBE meeting', note: 'Attend & observe. No notes or recap responsibility yet.' },
+        { type: 'sprint', icon: '📞', title: 'Traffix sprint call', note: 'You lead. Screen share RL sprint dashboard, run BRAIN, capture action items.' },
         ]
       },
       {
         heading: 'Post-Sprint',
         tasks: [
           { type: 'post', icon: '🗂️', title: 'Traffix — update RL tasks', note: 'Close completed tasks, update in-progress, add new items. Confirm all subtasks have assignees, dates, and time estimates.' },
-          { type: 'post', icon: '📧', title: 'Traffix — send recap email', note: 'Draft in Front from shared inbox. Include action items, budget update, Avoma link, RL portal link. Send within 24 hrs of sprint.' },
+          { type: 'post', icon: '📧', title: 'Traffix — send recap email', note: 'Draft with Kim in Front from shared inbox. Include action items, budget update, Avoma link, RL portal link. Send within 24 hrs of sprint.' },
         ]
       },
       {
         heading: 'EOD',
         tasks: [
-          { type: 'prep', icon: '📝', title: 'Send Thursday agendas', note: 'Draft & send agendas for HealthChannels, Lineal, and Omron. All three must be out before EOD Wednesday.' },
+          { type: 'prep', icon: '📝', title: 'Draft Thursday agendas', note: 'Draft & send agendas for HealthChannels and Lineal. Both must be out before EOD Wednesday.' },
         ]
       }
     ]
@@ -327,7 +339,7 @@ const schedule = {
       {
         heading: 'EOD Check',
         tasks: [
-          { type: 'confirm', icon: '✅', title: 'Confirm Thursday agendas sent', note: 'HealthChannels, Lineal, and Omron agendas must all be out the door today.' },
+          { type: 'confirm', icon: '✅', title: 'Confirm Thursday agendas sent', note: 'HealthChannels and Lineal agendas must all be out the door today.' },
         ]
       }
     ]
@@ -335,7 +347,7 @@ const schedule = {
   4: { // Thursday
     label: 'Thursday',
     emoji: '🔴',
-    summary: 'Heaviest day — confirm ForceBrands recap, then three back-to-back sprints.',
+    summary: 'Heaviest day — confirm ForceBrands recap, then three sprints.',
     sections: [
       {
         heading: 'Morning Check',
@@ -348,16 +360,16 @@ const schedule = {
         tasks: [
           { type: 'sprint', icon: '📞', title: 'HealthChannels sprint call', note: 'You lead. Run BRAIN.' },
           { type: 'sprint', icon: '📞', title: 'Lineal sprint call', note: 'You lead. Run BRAIN.' },
-          { type: 'sprint', icon: '📞', title: 'Omron sprint call', note: 'You lead. Run BRAIN.' },
+          { type: 'sprint', icon: '📞', title: 'Kami sprint call', note: 'You support. Take notes and offer insights as needed.' },
         ]
       },
       {
         heading: 'Post-Sprint',
         tasks: [
-          { type: 'post', icon: '🗂️', title: 'HealthChannels / Lineal / Omron — update RL tasks', note: 'Work through all three. Close completed, update open, add new items. Confirm assignees, dates, estimates.' },
+          { type: 'post', icon: '🗂️', title: 'HealthChannels / Lineal — update RL tasks', note: 'Close completed, update open, add new items. Confirm assignees, dates, estimates.' },
           { type: 'post', icon: '📧', title: 'HealthChannels — send recap email', note: 'Draft and send from shared Front inbox.' },
           { type: 'post', icon: '📧', title: 'Lineal — send recap email', note: 'Draft and send from shared Front inbox.' },
-          { type: 'post', icon: '📧', title: 'Omron — send recap email', note: 'Draft and send from shared Front inbox.' },
+          { type: 'post', icon: '📧', title: 'Kami — send recap email', note: 'Draft and send from shared Front inbox. Be sure to include the transcript of the call as an attachment. Use Zoom\'s transcript feature to create the attachment since it will be faster than Avoma.' },
         ]
       }
     ]
@@ -372,7 +384,7 @@ const schedule = {
         tasks: [
           { type: 'confirm', icon: '✅', title: 'Confirm HealthChannels recap was sent', note: 'Verify from shared client inbox.' },
           { type: 'confirm', icon: '✅', title: 'Confirm Lineal recap was sent', note: 'Verify from shared client inbox.' },
-          { type: 'confirm', icon: '✅', title: 'Confirm Omron recap was sent', note: 'Verify from shared client inbox.' },
+          { type: 'confirm', icon: '✅', title: 'Confirm Kami recap was sent', note: 'Verify from shared client inbox.' },
         ]
       },
       {
